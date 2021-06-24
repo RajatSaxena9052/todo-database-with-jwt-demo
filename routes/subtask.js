@@ -72,6 +72,9 @@ router.delete("/", checkToken, (req, res) => {
         } else {
             const task_id = Number(req.query.task_id);
             const user_id = Number(req.query.user_id);
+            const subtask_id = Number(req.query.subtask_id);
+
+            console.log(decoded.data[0].user_id ,user_id)
 
             if (decoded.data[0].user_id !== user_id) {
                 res.status(403).json({
@@ -79,7 +82,7 @@ router.delete("/", checkToken, (req, res) => {
                 });
             }
             else {
-                const data = { user_id, task_id };
+                const data = { user_id, task_id, subtask_id };
 
                 removeSubtask(data, (error, data) => {
                     if (error) {

@@ -45,11 +45,11 @@ function addSubtask(data, callBack) {
 }
 
 
-function removeSubtask({ user_id, task_id }, callBack) {
+function removeSubtask({ user_id, task_id, subtask_id }, callBack) {
 
     connection.query(
-        'DELETE s FROM Subtask s JOIN Task t ON t.task_id = s.task_id join User u ON u.user_id = t.user_id WHERE t.user_id = ? AND s.task_id = ?',
-        [user_id, task_id],
+        'DELETE s FROM Subtask s JOIN Task t ON t.task_id = s.task_id join User u ON u.user_id = t.user_id WHERE t.user_id = ? AND s.task_id = ? AND s.subtask_id',
+        [user_id, task_id, subtask_id],
         (error, results, fields) => {
             if (error) {
                 callBack(error);
