@@ -17,6 +17,7 @@ CREATE TABLE Task(
   user_id int NOT NULL,
   PRIMARY KEY(task_id),
   FOREIGN KEY(user_id) REFERENCES User(user_id)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE Subtask(
@@ -26,4 +27,5 @@ CREATE TABLE Subtask(
     task_id int,
     PRIMARY KEY(subtask_id),
     FOREIGN KEY(task_id) REFERENCES Task(task_id)
+    ON DELETE CASCADE
 );
